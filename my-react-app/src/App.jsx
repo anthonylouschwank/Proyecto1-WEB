@@ -62,33 +62,31 @@ function App() {
   }
 
   return (
-    <div className="card">
-      <div className="calculator">
-        <div className="display">{displayValue}</div>
-
-        <div className="buttons">
-          <div className="number-grid">
-            
-            {[7, 8, 9, 4, 5, 6, 1, 2, 3, 0].map(num => (
-              <button key={num} onClick={() => handleNumber(num.toString())}>
-                {num}
-              </button>
-            ))}
-            <button onClick={() => handleNumber('.')}>.</button>
-            <button onClick={calculate}>=</button>
+    <div className="app-container">
+      <div className="card">
+        <div className="calculator">
+          <div className="display">{displayValue}</div>
+          <div className="buttons">
+            <div className="number-grid">
+              {[7, 8, 9, 4, 5, 6, 1, 2, 3, 0].map(num => (
+                <button key={num} onClick={() => handleNumber(num.toString())}>
+                  {num}
+                </button>
+               ))}
+              <button onClick={() => handleNumber('.')}>.</button>
+              <button onClick={calculate}>=</button>
+              </div>
+              <button onClick={clear} className="operator">C</button>
+             {["+", "-", "*", "/"].map(op => (
+                <button key={op} onClick={() => handleOperator(op)} className="operator">
+                {op}
+               </button>
+              ))}
+              </div>
+            </div>
           </div>
-          <button onClick={clear} className="operator">C</button>
-          {["+", "-", "*", "/"].map(op => (
-            <button key={op} onClick={() => handleOperator(op)} className="operator">
-              {op}
-            </button>
-          ))}
-
-          
         </div>
-      </div>
-    </div>
-  )
+    )
 }
 
 export default App

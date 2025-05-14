@@ -1,3 +1,15 @@
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #000000;
+  position: fixed; /* Añadimos esto */
+  width: 100%; /* Añadimos esto */
+  top: 0; /* Añadimos esto */
+  left: 0; /* Añadimos esto */ 
+}
+
 .calculator {
   max-width: 300px;
   margin: 0 auto;
@@ -14,6 +26,8 @@
   text-align: right;
   margin-bottom: 10px;
   border-radius: 5px;
+  color: #000000; /* Añadimos esto para asegurar que el texto sea negro */
+  border: 1px solid #ccc; /* Opcional: añade un borde sutil */
 }
 
 .buttons {
@@ -50,3 +64,11 @@ button:hover {
 .operator:hover {
   background: #cc7700;
 }
+
+.card{
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* Centra verticalmente */
+  min-height: 100vh;       /* Ocupa toda la altura de la pantalla */
+}
+
