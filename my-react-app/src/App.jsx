@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 
-function App () {
+function App() {
   const [displayValue, setDisplayValue] = useState('0')
   const [firstNumber, setFirstNumber] = useState(null)
   const [operator, setOperator] = useState(null)
@@ -31,26 +31,26 @@ function App () {
     let result = 0
 
     switch (operator) {
-      case '+':
-        result = firstNumber + secondNumber
-        break
-      case '-':
-        if (firstNumber < secondNumber) {
-          setDisplayValue('ERROR')
-          setNewNumber(true)
-          setOperator(null)
-          return
-        }
-        result = firstNumber - secondNumber
-        break
-      case '*':
-        result = firstNumber * secondNumber
-        break
-      case '/':
-        result = firstNumber / secondNumber
-        break
-      default:
+    case '+':
+      result = firstNumber + secondNumber
+      break
+    case '-':
+      if (firstNumber < secondNumber) {
+        setDisplayValue('ERROR')
+        setNewNumber(true)
+        setOperator(null)
         return
+      }
+      result = firstNumber - secondNumber
+      break
+    case '*':
+      result = firstNumber * secondNumber
+      break
+    case '/':
+      result = firstNumber / secondNumber
+      break
+    default:
+      return
     }
 
     let formattedResult = result.toString()
@@ -76,13 +76,13 @@ function App () {
   }
 
   return (
-    <div className='app-container'>
-      <div className='card'>
-        <div className='calculator'>
-          <div className='display'>{displayValue}</div>
-          <div className='buttons'>
-            <div className='number-grid'>
-              {[7, 8, 9, 4, 5, 6, 1, 2, 3, 0].map(num => (
+    <div className="app-container">
+      <div className="card">
+        <div className="calculator">
+          <div className="display">{displayValue}</div>
+          <div className="buttons">
+            <div className="number-grid">
+              {[7, 8, 9, 4, 5, 6, 1, 2, 3, 0].map((num) => (
                 <button key={num} onClick={() => handleNumber(num.toString())}>
                   {num}
                 </button>
@@ -90,9 +90,15 @@ function App () {
               <button onClick={() => handleNumber('.')}>.</button>
               <button onClick={calculate}>=</button>
             </div>
-            <button onClick={clear} className='operator'>C</button>
-            {['+', '-', '*', '/'].map(op => (
-              <button key={op} onClick={() => handleOperator(op)} className='operator'>
+            <button onClick={clear} className="operator">
+              C
+            </button>
+            {['+', '-', '*', '/'].map((op) => (
+              <button
+                key={op}
+                onClick={() => handleOperator(op)}
+                className="operator"
+              >
                 {op}
               </button>
             ))}
