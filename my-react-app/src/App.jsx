@@ -1,41 +1,46 @@
 import { useState } from 'react'
 import './App.css'
 
-function App() {
+function App () {
   const [displayValue, setDisplayValue] = useState('0')
   const [firstNumber, setFirstNumber] = useState(null)
   const [operator, setOperator] = useState(null)
   const [newNumber, setNewNumber] = useState(true)
 
-  // Manejar números
   const handleNumber = (num) => {
     if (newNumber) {
       setDisplayValue(num)
       setNewNumber(false)
     } else {
-      setDisplayValue(displayValue + num)
+      if (displayValue.replace('.', '').length < 9) {
+        setDisplayValue(displayValue + num)
+      }
     }
   }
 
-  // Manejar operadores
   const handleOperator = (op) => {
     setFirstNumber(parseFloat(displayValue))
     setOperator(op)
     setNewNumber(true)
   }
 
-  // Calcular resultado
   const calculate = () => {
     if (!operator) return
-    
+
     const secondNumber = parseFloat(displayValue)
     let result = 0
 
-    switch(operator) {
+    switch (operator) {
       case '+':
         result = firstNumber + secondNumber
         break
       case '-':
+        if (firstNumber < secondNumber) {
+          setDisplayValue('ERROR')
+          setNewNumber(true)
+          setOperator(null)
+          return
+        }
         result = firstNumber - secondNumber
         break
       case '*':
@@ -48,12 +53,21 @@ function App() {
         return
     }
 
-    setDisplayValue(result.toString())
+    let formattedResult = result.toString()
+    if (formattedResult.length > 9) {
+      if (formattedResult.includes('.')) {
+        formattedResult = parseFloat(result).toFixed(
+          Math.max(0, 8 - formattedResult.split('.')[0].length)
+        )
+      } else {
+        formattedResult = parseFloat(result).toExponential(2)
+      }
+    }
+    setDisplayValue(formattedResult)
     setNewNumber(true)
     setOperator(null)
   }
 
-  // Limpiar pantalla
   const clear = () => {
     setDisplayValue('0')
     setFirstNumber(null)
@@ -62,31 +76,31 @@ function App() {
   }
 
   return (
-    <div className="app-container">
-      <div className="card">
-        <div className="calculator">
-          <div className="display">{displayValue}</div>
-          <div className="buttons">
-            <div className="number-grid">
+    <div className='app-container'>
+      <div className='card'>
+        <div className='calculator'>
+          <div className='display'>{displayValue}</div>
+          <div className='buttons'>
+            <div className='number-grid'>
               {[7, 8, 9, 4, 5, 6, 1, 2, 3, 0].map(num => (
                 <button key={num} onClick={() => handleNumber(num.toString())}>
                   {num}
                 </button>
-               ))}
+              ))}
               <button onClick={() => handleNumber('.')}>.</button>
               <button onClick={calculate}>=</button>
-              </div>
-              <button onClick={clear} className="operator">C</button>
-             {["+", "-", "*", "/"].map(op => (
-                <button key={op} onClick={() => handleOperator(op)} className="operator">
-                {op}
-               </button>
-              ))}
-              </div>
             </div>
+            <button onClick={clear} className='operator'>C</button>
+            {['+', '-', '*', '/'].map(op => (
+              <button key={op} onClick={() => handleOperator(op)} className='operator'>
+                {op}
+              </button>
+            ))}
           </div>
         </div>
-    )
+      </div>
+    </div>
+  )
 }
 
 export default App
