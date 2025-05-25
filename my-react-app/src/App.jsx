@@ -49,6 +49,9 @@ function App() {
     case '/':
       result = firstNumber / secondNumber
       break
+    case '%':
+      result = firstNumber % secondNumber
+      break
     default:
       return
     }
@@ -75,11 +78,12 @@ function App() {
     setNewNumber(true)
   }
 
+  
   return (
     <div className="app-container">
       <div className="card">
         <div className="calculator">
-          <div className="display">{displayValue}</div>
+          <div className="display" data-testid="display">{displayValue}</div>
           <div className="buttons">
             <div className="number-grid">
               {[7, 8, 9, 4, 5, 6, 1, 2, 3, 0].map((num) => (
@@ -93,7 +97,7 @@ function App() {
             <button onClick={clear} className="operator">
               C
             </button>
-            {['+', '-', '*', '/'].map((op) => (
+            {['+', '-', '*', '/', '%'].map((op) => (
               <button
                 key={op}
                 onClick={() => handleOperator(op)}
