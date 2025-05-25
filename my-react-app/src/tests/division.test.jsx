@@ -21,5 +21,5 @@ test('realiza la operación 2 + 4 / 3 = 8', () => {
   fireEvent.click(equalsButton);
 
   // Verificar el resultado
-  expect(display).toHaveTextContent('8'); // (24 / 3) ≈ 8 (depende de tu lógica de redondeo)
+  expect(display).toHaveTextContent('8'); // (24 / 3) ≈ 8 
 });
