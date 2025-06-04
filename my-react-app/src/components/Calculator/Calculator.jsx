@@ -80,37 +80,59 @@ export function Calculator() {
     setNewNumber(true)
   }
 
+  const toggleSign = () => {
+    if (displayValue === '0' || displayValue === 'ERROR') return;
+    
+    // Maneja números en notación científica
+    if (displayValue.includes('e')) {
+      const [base, exponent] = displayValue.split('e');
+      const newBase = base.startsWith('-') ? base.substring(1) : '-' + base;
+      setDisplayValue(`${newBase}e${exponent}`);
+    } else {
+      setDisplayValue(displayValue.startsWith('-') 
+        ? displayValue.substring(1) 
+        : '-' + displayValue);
+    }
+    setNewNumber(false);
+  };
+
   
-  return (
-    <div className="app-container">
-      <div className="card">
-        <div className="calculator">
-          <div className="display" data-testid="display">{displayValue}</div>
-          <div className="buttons">
-            <div className="number-grid">
-              {[7, 8, 9, 4, 5, 6, 1, 2, 3, 0].map((num) => (
-                <button key={num} onClick={() => handleNumber(num.toString())}>
-                  {num}
-                </button>
-              ))}
-              <button onClick={() => handleNumber('.')}>.</button>
-              <button onClick={calculate}>=</button>
-            </div>
-            <button onClick={clear} className="operator">
-              C
-            </button>
-            {['+', '-', '*', '/', '%'].map((op) => (
-              <button
-                key={op}
-                onClick={() => handleOperator(op)}
-                className="operator"
-              >
-                {op}
-              </button>
-            ))}
-          </div>
-        </div>
+return (
+  <div className="app-container">
+    <div className="calculator">
+      <Display value={displayValue} />
+      <div className="buttons">
+        {/* Fila 1 */}
+        <button className="gray" onClick={clear}>C</button>
+        <button className="gray">( )</button> {/* Opcional: implementar funcionalidad */}
+        <button className="gray" onClick={() => handleOperator('%')}>%</button>
+        <button className="orange" onClick={() => handleOperator('/')}>÷</button>
+
+        {/* Fila 2 */}
+        <button className="dark" onClick={() => handleNumber('7')}>7</button>
+        <button className="dark" onClick={() => handleNumber('8')}>8</button>
+        <button className="dark" onClick={() => handleNumber('9')}>9</button>
+        <button className="orange" onClick={() => handleOperator('*')}>×</button>
+
+        {/* Fila 3 */}
+        <button className="dark" onClick={() => handleNumber('4')}>4</button>
+        <button className="dark" onClick={() => handleNumber('5')}>5</button>
+        <button className="dark" onClick={() => handleNumber('6')}>6</button>
+        <button className="orange" onClick={() => handleOperator('-')}>-</button>
+
+        {/* Fila 4 */}
+        <button className="dark" onClick={() => handleNumber('1')}>1</button>
+        <button className="dark" onClick={() => handleNumber('2')}>2</button>
+        <button className="dark" onClick={() => handleNumber('3')}>3</button>
+        <button className="orange" onClick={() => handleOperator('+')}>+</button>
+
+        {/* Fila 5 */}
+        <button className="dark" onClick={toggleSign}>+/-</button> 
+        <button className="dark zero" onClick={() => handleNumber('0')}>0</button>
+        <button className="dark" onClick={() => handleNumber('.')}>.</button>
+        <button className="orange" onClick={calculate}>=</button>
       </div>
     </div>
-  )
+  </div>
+);
 }

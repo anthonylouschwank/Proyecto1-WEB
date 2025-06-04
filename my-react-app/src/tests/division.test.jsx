@@ -2,15 +2,15 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import { expect, test } from 'vitest'
 import App from '../App'
 
-test('realiza la operación 2 + 4 / 3 = 8', () => {
+test('realiza la operación 24 / 3 = 8', () => {
   render(<App />)
   
-  // Obtener elementos
-  const button2 = screen.getByRole('button', { name: '2' })
-  const button3 = screen.getByRole('button', { name: '3' })
-  const button4 = screen.getByRole('button', { name: '4' })
-  const divideButton = screen.getByRole('button', { name: '/' })
-  const equalsButton = screen.getByRole('button', { name: '=' })
+  // Obtener elementos por texto visible (más confiable)
+  const button2 = screen.getByText('2')
+  const button3 = screen.getByText('3')
+  const button4 = screen.getByText('4')
+  const divideButton = screen.getByText('÷')  // Cambiado de '/' a '÷'
+  const equalsButton = screen.getByText('=')
   const display = screen.getByTestId('display')
 
   // Simular la secuencia: 24 / 3 =
@@ -20,6 +20,6 @@ test('realiza la operación 2 + 4 / 3 = 8', () => {
   fireEvent.click(button3)
   fireEvent.click(equalsButton)
 
-  // Verificar el resultado
-  expect(display).toHaveTextContent('8') // (24 / 3) ≈ 8 
+  // Verificar el resultado (24 / 3 = 8)
+  expect(display).toHaveTextContent('8')
 })

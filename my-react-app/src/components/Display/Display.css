@@ -1,10 +1,18 @@
 .display {
-  width: 100%;
-  padding: 10px;
-  font-size: 2rem;
+  color: white;
   text-align: right;
-  background: #f0f0f0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 10px;
+  font-size: 3.5rem;
+  padding: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.number {
+  background: #333;
+  color: white;
+}
+
+.function {
+  background: #a5a5a5;
+  color: black;
 }
