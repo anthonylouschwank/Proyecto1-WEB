@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { Display } from '../Display/Display';
-import { Button } from '../Button/Button';
-import './Calculator.css';
+import { useState } from 'react'
+import { Display } from '../Display/Display'
+import { Button } from '../Button/Button'
+import './Calculator.css'
 
 export function Calculator() {
   const [displayValue, setDisplayValue] = useState('0')

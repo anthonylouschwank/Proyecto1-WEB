@@ -1,4 +1,4 @@
-import './Button.css';
+import './Button.css'
 
 export function Button({ children, onClick, className = '' }) {
   return (
@@ -8,5 +8,5 @@ export function Button({ children, onClick, className = '' }) {
     >
       {children}
     </button>
-  );
+  )
 }

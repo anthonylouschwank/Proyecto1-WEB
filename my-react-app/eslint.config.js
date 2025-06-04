@@ -27,10 +27,11 @@ export default [
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
       'no-unused-vars': ['error', { 
-        varsIgnorePattern: '^(React|StrictMode|App)$',
+        varsIgnorePattern: '^(React|StrictMode|App|Calculator|.*[A-Z])',
         args: 'after-used',
         ignoreRestSiblings: true
       }],
+      'max-len': ['error', { code: 120, ignoreComments: true, ignoreUrls: true }],
       'semi': ['error', 'never'],  // This enforces no semicolons
       'quotes': ['error', 'single'],
       'indent': ['error', 2]

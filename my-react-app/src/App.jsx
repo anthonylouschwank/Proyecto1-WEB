@@ -1,5 +1,5 @@
-import { Calculator } from './components/Calculator/Calculator.jsx';
-import './App.css';
+import { Calculator } from './components/Calculator/Calculator.jsx'
+import './App.css'
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
         <Calculator />
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

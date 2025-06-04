@@ -1,8 +1,8 @@
-import { Calculator } from '../components/Calculator/Calculator';
+import { Calculator } from '../components/Calculator/Calculator'
 
 export default {
   title: 'Calculator/App',
   component: Calculator,
-};
+}
 
-export const Default = {};
+export const Default = {}

@@ -1,24 +1,24 @@
-import { Display } from '../components/Display/Display.jsx';
-import '../components/Display/Display.css';
-import { Button } from '../components/Button/Button.jsx';
-import { useState } from 'react';
+import { Display } from '../components/Display/Display.jsx'
+import '../components/Display/Display.css'
+import { Button } from '../components/Button/Button.jsx'
+import { useState } from 'react'
 
 
 export default {
   title: 'Calculator/Display',
   component: Display,
-};
+}
 
-export const Default = { args: { value: '0' } };
-export const WithValue = { args: { value: '123.45' } };
-export const ErrorState = { args: { value: 'ERROR' } };
+export const Default = { args: { value: '0' } }
+export const WithValue = { args: { value: '123.45' } }
+export const ErrorState = { args: { value: 'ERROR' } }
 
 export const InteractiveWithClear = () => {
-  const [displayValue, setDisplayValue] = useState('123.45'); // Valor inicial
+  const [displayValue, setDisplayValue] = useState('123.45') // Valor inicial
 
   const handleClear = () => {
-    setDisplayValue('0'); // Reset al hacer clic en "C"
-  };
+    setDisplayValue('0') // Reset al hacer clic en "C"
+  }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -27,16 +27,16 @@ export const InteractiveWithClear = () => {
         C
       </Button>
     </div>
-  );
-};
+  )
+}
 
 // Story que simula entrada de usuario (¡nueva!)
 export const SimulatedUserInput = () => {
-  const [displayValue, setDisplayValue] = useState('0');
+  const [displayValue, setDisplayValue] = useState('0')
 
   const handleButtonClick = (num) => {
-    setDisplayValue(prev => prev === '0' ? num : prev + num);
-  };
+    setDisplayValue(prev => prev === '0' ? num : prev + num)
+  }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -52,5 +52,5 @@ export const SimulatedUserInput = () => {
         </Button>
       </div>
     </div>
-  );
-};
+  )
+}
